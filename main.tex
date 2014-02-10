@@ -1,16 +1,19 @@
 \documentclass{article}
 \usepackage[margin=1in]{geometry}
 
-\usepackage{fontspec}
-\setmainfont[BoldFont={HoeflerText-Bold},ItalicFont={Hoefler Text Italic},BoldItalicFont={Hoefler Text Black Italic},SmallCapsFont={HoeflerText-RomanSC},Ligatures={NoCommon, TeX}]{Hoefler Text}
-\setmonofont[Ligatures={TeX}]{Source Code Pro Medium}
-
 \title{Typesetting Multilingual Documents}
 \author{Colby Goettel}
 
 \begin{document}
 \maketitle
 
-
+% sections on:
+%     -book, chapter, verse page flow
+%         -\markboth{}{} problems with chapters and verses starting a page
+%         -stopped using \section and instead defined a new macro which would (1) properly display the chapter number in relation to the chapter header and (2) defined \markboth{chapter:1}{chapter:1} to force the first verse to show in the header. This solved the issue of having a new chapter start a page, but there is still a problem with verses starting the page because the previous and current page do not recognize the correct verse.
+%         -
+%     -RTL text entry
+%     -Hebrew poetry
+%     -
 
 \end{document}
