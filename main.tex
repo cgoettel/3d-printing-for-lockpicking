@@ -1,21 +1,63 @@
 \documentclass{acm_proc_article-sp}
 
-\title{Typesetting Multilingual Documents}
+\title{Typesetting Biblical Hebrew Poetry}
 \author{Colby Goettel}
+
+\usepackage{mathtools}
+% Hebrew
+\usepackage{xltxtra}
+\newfontfamily{\sblh}[Script=Hebrew]{SBL Hebrew}
+\newcommand\Hebrew[1]{{\large\sblh #1}}
 
 \begin{document}
 \maketitle
 
-% sections on:
-%     -book, chapter, verse page flow
-%         -\markboth{}{} problems with chapters and verses starting a page
-%         -stopped using \section and instead defined a new macro which would (1) properly display the chapter number in relation to the chapter header and (2) defined \markboth{chapter:1}{chapter:1} to force the first verse to show in the header. This solved the issue of having a new chapter start a page, but there is still a problem with verses starting the page because the previous and current page do not recognize the correct verse.
-%         -
-%     -RTL text entry
-%     -Hebrew poetry
-%     -
+changed verse numbers to superscript to get them out of the way
+    red so they don't look like footnotes
+added commands to handle formatting the Hebrew
+    need to consolidate these (but not for this paper)
 
-some text
+NOTES FROM ISSUE #1:
+Mimic layout of verses in the BHS. Possibly using this: http://mirror.math.ku.edu/tex-archive/macros/latex/contrib/verse/verse.pdf
+    This ended up not being used. It was simpler for this complex purpose to build something unique.
+
+Need to preserve indentation (both at beginning of line and in middle).
+
+**Specifications:**
+- [x] Each line is indented at least once.
+    using minipages did this naturally.
+    tried using \hbox and \pbox, but neither did what needed to be done. Didn't want a box around it and the indentation didn't work when a new-line occurred in the middle of a verse.
+- [x] Not every verse starts on a new line. Verses can start in the middle of an existing line.
+    had to create the \vn macro to handle this.
+- [x] Each line is comprised of sections:
+  1. Each section is separated by a space.
+    played around with different spacings, purely aesthetic, and ended up using the 1em spacing. Anything else threw the word spacing off by too much.
+  2. There should be no trailing whitespace.
+    so you can't just constantly throw in the 1em space. It needed to be precise.
+  3. Can't assume that there will always be one or two sections, sometimes three or more appear. It is always variable.
+    Currently handling from aa to dd.
+
+**Previous notes:**
+- [x] Switch out of two column view
+- [ ] ~~Possibly: use a new command \tab{} which would insert the spacing (probably not the best idea)~~
+- [ ] ~~Use the \itemcountmarker for verses~~
+- [x] If a verse occurs mid-line, put the number in square brackets.
+- [ ] Don't include verse numbers as part of the indentation (do it like the BHS does).
+
+I've been translating Hebrew for four years now and have fallen in love with the format of Biblical Hebrew poetry.
+
+\begin{align*}
+    \text{\Hebrew{מֵעֲוֹנֹתֵ֑ינוּ מְדֻכָּ֖א~~~~ מִפְּשָׁעֵ֔נוּ מְחֹלָ֣ל וְהוּא֙}}&\,^5 \\
+    \text{\Hebrew{נִרְפָּא־לָֽנוּ׃ וּבַחֲבֻרָתֹ֖ו~~~~ עָלָ֔יו שְׁלֹומֵ֙נוּ֙ מוּסַ֤ר}}&
+\end{align*}
+% \begin{align}
+%     &^5\,\text{He was wounded for our transgressions, He was bruised for our iniquities. Upon Him was the} \\
+%     &\text{punishment through which we receive peace. We are healed by His stripes.}
+% \end{align}
+% \begin{align}
+%     ^5\,&\text{He was wounded for our transgressions, ~~~~He was bruised for our iniquities.} \\
+%         &\text{Upon Him was the punishment through which we receive peace. ~~~~We are healed by His stripes.}
+% \end{align}
 
 \bibliographystyle{abbrv}
 \bibliography{references}
