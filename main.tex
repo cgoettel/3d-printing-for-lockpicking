@@ -39,10 +39,17 @@ Need to preserve indentation (both at beginning of line and in middle).
 
 **Previous notes:**
 - [x] Switch out of two column view
+    this made it a lot easier for dealing with chapters with mixed verses.
 - [ ] ~~Possibly: use a new command \tab{} which would insert the spacing (probably not the best idea)~~
+    opted for 1em \hspace* instead.
 - [ ] ~~Use the \itemcountmarker for verses~~
+    made my own command that incremented the normal verse counter (enumi).
 - [x] If a verse occurs mid-line, put the number in square brackets.
+    done. but with superscript.
+    also, incremented the normal verse counter so as to not throw that off
 - [ ] Don't include verse numbers as part of the indentation (do it like the BHS does).
+    did not do. would still like to have done, but no idea how to get everything to align.
+        can't use tables, can't use verses. has to be in the inparaenum environment. Well, no, it doesn't, but that makes the most sense except for chapters that don't include poetry, but then what do we do about mixed chapters? this is too complex to solve that easily.
 
 I've been translating Hebrew for four years now and have fallen in love with the format of Biblical Hebrew poetry.
 
