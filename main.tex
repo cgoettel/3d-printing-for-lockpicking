@@ -1,7 +1,13 @@
 \documentclass{acm_proc_article-sp}
 
 \title{Typesetting Biblical Hebrew Poetry}
-\author{Colby Goettel}
+\author{
+\alignauthor
+Colby Goettel\\
+       \affaddr{Brigham Young University}\\
+       \affaddr{Provo, UT 84602}\\
+       \email{colby.goettel@gmail.com}
+}
 
 \usepackage{mathtools}
 % Hebrew
@@ -12,51 +18,80 @@
 \begin{document}
 \maketitle
 
-changed verse numbers to superscript to get them out of the way
-    red so they don't look like footnotes
-added commands to handle formatting the Hebrew
-    need to consolidate these (but not for this paper)
+\section{Introduction}
+Fundamentally, everything in IT is problem solving. I believe it is what has driven all of us into this field, what keeps us going. This project is rooted in problem solving and that's the direction this paper will take: what the initial problem is, what obstacles lie in wait, and how they were solved.
 
-NOTES FROM ISSUE #1:
-Mimic layout of verses in the BHS. Possibly using this: http://mirror.math.ku.edu/tex-archive/macros/latex/contrib/verse/verse.pdf
-    This ended up not being used. It was simpler for this complex purpose to build something unique.
-
-Need to preserve indentation (both at beginning of line and in middle).
-
-**Specifications:**
-- [x] Each line is indented at least once.
-    using minipages did this naturally.
-    tried using \hbox and \pbox, but neither did what needed to be done. Didn't want a box around it and the indentation didn't work when a new-line occurred in the middle of a verse.
-- [x] Not every verse starts on a new line. Verses can start in the middle of an existing line.
-    had to create the \vn macro to handle this.
-- [x] Each line is comprised of sections:
-  1. Each section is separated by a space.
-    played around with different spacings, purely aesthetic, and ended up using the 1em spacing. Anything else threw the word spacing off by too much.
-  2. There should be no trailing whitespace.
-    so you can't just constantly throw in the 1em space. It needed to be precise.
-  3. Can't assume that there will always be one or two sections, sometimes three or more appear. It is always variable.
-    Currently handling from aa to dd.
-
-**Previous notes:**
-- [x] Switch out of two column view
-    this made it a lot easier for dealing with chapters with mixed verses.
-- [ ] ~~Possibly: use a new command \tab{} which would insert the spacing (probably not the best idea)~~
-    opted for 1em \hspace* instead.
-- [ ] ~~Use the \itemcountmarker for verses~~
-    made my own command that incremented the normal verse counter (enumi).
-- [x] If a verse occurs mid-line, put the number in square brackets.
-    done. but with superscript.
-    also, incremented the normal verse counter so as to not throw that off
-- [ ] Don't include verse numbers as part of the indentation (do it like the BHS does).
-    did not do. would still like to have done, but no idea how to get everything to align.
-        can't use tables, can't use verses. has to be in the inparaenum environment. Well, no, it doesn't, but that makes the most sense except for chapters that don't include poetry, but then what do we do about mixed chapters? this is too complex to solve that easily.
-
-I've been translating Hebrew for four years now and have fallen in love with the format of Biblical Hebrew poetry.
-
-\begin{align*}
+\section{Form of Biblical Hebrew poetry}
+Biblical Hebrew poetry has a unique form and it quite different than English poetry. Hebrew poetry is not based off rhyme or meter, but parallelism. Mimicking this form is complex and not very straightforward. Here is a short example from Isaiah~53\thinspace:\thinspace5 showing some of the complexities of Biblical Hebrew poetry:
+\begin{align*} % Isaiah 53:5
     \text{\Hebrew{מֵעֲוֹנֹתֵ֑ינוּ מְדֻכָּ֖א~~~~ מִפְּשָׁעֵ֔נוּ מְחֹלָ֣ל וְהוּא֙}}&\,^5 \\
     \text{\Hebrew{נִרְפָּא־לָֽנוּ׃ וּבַחֲבֻרָתֹ֖ו~~~~ עָלָ֔יו שְׁלֹומֵ֙נוּ֙ מוּסַ֤ר}}&
 \end{align*}
+As can be seen from this example, the lines are indented at different levels and there's a space in the middle of the lines. To make matters worse, the level of indentation can vary anywhere from one to four levels; the space in the middle can be present, not present, or doubly present. There is very little consistency between lines.
+
+\section{Specifications}
+% **Specifications:**
+% - [x] Each line is indented at least once.
+%     using minipages did this naturally.
+%     tried using \hbox and \pbox, but neither did what needed to be done. Didn't want a box around it and the indentation didn't work when a new-line occurred in the middle of a verse.
+% - [x] Not every verse starts on a new line. Verses can start in the middle of an existing line.
+%     had to create the \vn macro to handle this.
+% - [x] Each line is comprised of sections:
+%   1. Each section is separated by a space.
+%     played around with different spacings, purely aesthetic, and ended up using the 1em spacing. Anything else threw the word spacing off by too much.
+%   2. There should be no trailing whitespace.
+%     so you can't just constantly throw in the 1em space. It needed to be precise.
+%   3. Can't assume that there will always be one or two sections, sometimes three or more appear. It is always variable.
+%     Currently handling from aa to dd.
+Each line is indented at least once, but sometimes more. These indentations need to be vertically consistent. When a new line appears in the middle of a line due to length, the new line needs to be indented as much as its parent line. This also means that new lines must appear and lines cannot bleed off the page.
+
+Each line can contain multiple sections, but sometimes none. These sections need to be spaced out.
+
+Not every verse starts on a new line; sometimes the verse starts in the middle of a line. 
+
+\section{Obstacles}
+\section{Problem solving}
+\section{Conclusion}
+
+% changed verse numbers to superscript to get them out of the way
+%     red so they don't look like footnotes
+% added commands to handle formatting the Hebrew
+%     need to consolidate these (but not for this paper)
+
+% NOTES FROM ISSUE #1:
+% Mimic layout of verses in the BHS. Possibly using this: http://mirror.math.ku.edu/tex-archive/macros/latex/contrib/verse/verse.pdf
+%     This ended up not being used. It was simpler for this complex purpose to build something unique.
+
+% Need to preserve indentation (both at beginning of line and in middle).
+
+% **Specifications:**
+% - [x] Each line is indented at least once.
+%     using minipages did this naturally.
+%     tried using \hbox and \pbox, but neither did what needed to be done. Didn't want a box around it and the indentation didn't work when a new-line occurred in the middle of a verse.
+% - [x] Not every verse starts on a new line. Verses can start in the middle of an existing line.
+%     had to create the \vn macro to handle this.
+% - [x] Each line is comprised of sections:
+%   1. Each section is separated by a space.
+%     played around with different spacings, purely aesthetic, and ended up using the 1em spacing. Anything else threw the word spacing off by too much.
+%   2. There should be no trailing whitespace.
+%     so you can't just constantly throw in the 1em space. It needed to be precise.
+%   3. Can't assume that there will always be one or two sections, sometimes three or more appear. It is always variable.
+%     Currently handling from aa to dd.
+
+% **Previous notes:**
+% - [x] Switch out of two column view
+%     this made it a lot easier for dealing with chapters with mixed verses.
+% - [ ] ~~Possibly: use a new command \tab{} which would insert the spacing (probably not the best idea)~~
+%     opted for 1em \hspace* instead.
+% - [ ] ~~Use the \itemcountmarker for verses~~
+%     made my own command that incremented the normal verse counter (enumi).
+% - [x] If a verse occurs mid-line, put the number in square brackets.
+%     done. but with superscript.
+%     also, incremented the normal verse counter so as to not throw that off
+% - [ ] Don't include verse numbers as part of the indentation (do it like the BHS does).
+%     did not do. would still like to have done, but no idea how to get everything to align.
+%         can't use tables, can't use verses. has to be in the inparaenum environment. Well, no, it doesn't, but that makes the most sense except for chapters that don't include poetry, but then what do we do about mixed chapters? this is too complex to solve that easily.
+
 % \begin{align}
 %     &^5\,\text{He was wounded for our transgressions, He was bruised for our iniquities. Upon Him was the} \\
 %     &\text{punishment through which we receive peace. We are healed by His stripes.}
