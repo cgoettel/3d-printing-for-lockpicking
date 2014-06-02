@@ -92,14 +92,93 @@ Not every verse starts on a new line; sometimes the verse starts in the middle o
 %     did not do. would still like to have done, but no idea how to get everything to align.
 %         can't use tables, can't use verses. has to be in the inparaenum environment. Well, no, it doesn't, but that makes the most sense except for chapters that don't include poetry, but then what do we do about mixed chapters? this is too complex to solve that easily.
 
-% \begin{align}
-%     &^5\,\text{He was wounded for our transgressions, He was bruised for our iniquities. Upon Him was the} \\
-%     &\text{punishment through which we receive peace. We are healed by His stripes.}
-% \end{align}
-% \begin{align}
-%     ^5\,&\text{He was wounded for our transgressions, ~~~~He was bruised for our iniquities.} \\
-%         &\text{Upon Him was the punishment through which we receive peace. ~~~~We are healed by His stripes.}
-% \end{align}
+Project Purpose
+Increase Biblical understanding through a more idiomatic typesetting of English translations of the Biblia
+Hebraica Stuttgartensia (BHS), the standard for scholarly Hebrew Bibles.
+Project Importance
+The authors of the BHS communicated information in the physical structure and layout of the Hebrew script.
+The information in the physical structure and layout of the Hebrew script is lost when translated into plain,
+English prose, such as in the King James Version of the Holy Bible. Specialized typesetting and rendering
+software procedures are needed to preserve the Hebrew physical layout, structure, and meaning in modern
+English translations.
+Project Profile Body
+We propose creating specialized macros for typesetting English translations of Hebrew, Biblical texts.
+These macros will be created for the L A TEX [5] document preparation system. L A TEX and its TEX [2]
+typesetting language are powerful typesetting systems created by computer scientists to create highly tech-
+nical and customized documents. XƎTEX extends the L A TEX ecosystem providing support for typesetting
+multiple languages via Unicode. We will use the XƎTEX environment as a foundation upon which to build
+our Biblical Hebrew typesetting tools. The research problems we will be addressing include the layout of
+translated Hebrew poetry, typesetting multiple foreign scripts, and the page flow of chapters and verses.
+Hebrew poetry Hebrew poetry holds a unique structure. English poetry is based on rhyming and
+rhythm, whereas Hebrew poetry is grounded in parallelisms and comparing and contrasting. Having the
+English translation mimic the Hebrew indentation helps the reader to intuitively see the beautiful, poetic
+structure of the scriptures; it will help people better understand the scriptures. Here’s an example of Isaiah
+53:5 in Hebrew, typical English, and a preferred typesetting in English:
+\begin{align}
+    &^5\,\text{He was wounded for our transgressions, He was bruised for our iniquities. Upon Him was the} \\
+    &\text{punishment through which we receive peace. We are healed by His stripes.}
+\end{align}
+\begin{align}
+    ^5\,&\text{He was wounded for our transgressions, ~~~~He was bruised for our iniquities.} \\
+        &\text{Upon Him was the punishment through which we receive peace. ~~~~We are healed by His stripes.}
+\end{align}
+
+The problem with the latter, preferred layout (5 and 6) is that, for space, it must be typeset in one
+column, not the two column format that the rest of the Bible is typeset in. The way that 5 and 6 were done
+is a hack: it’s case specific and not extensible. It uses an environment meant for displaying mathematical
+equations, not Hebrew poetry. We will create macros to format translated Hebrew poetry correctly.
+Multiple scripts This project will also advance research into the area of typesetting in one document
+multiple foreign scripts (Biblical Hebrew, Aramaic, Syriac, Egyptian, Ancient Greek, Paleo-Hebrew, Arabic,
+etc.) and Latin scripts (Latin, Spanish, French, German, etc.). Effective understanding of Hebrew requires
+examples from other languages. For example, in Hebrew there are two words for a river, one meaning a
+seasonal river ( ‫נחל‬ ), the other meaning a perennial river ( ‫נהר‬ ). English does not have a word for either,
+simply “river.” But Spanish has arroyo and Arabic has wādī for “seasonal river.” Goettel’s translation of
+the Bible typesets words and phrases from ancient and modern natural languages to add understanding to
+the ambiguous Hebrew text. We will create macros to allow for linguistic expository notes in footnotes and
+appendices.
+
+Book, chapter, verse page flow The numbering in the headers, which happens dynamically on docu-
+ment compilation, is not sufficient for Biblical flow (e.g., when a new chapter ends the page). Existing header
+macros are not sufficiently refined for semantic markup of scriptural verses. Additionally, footnote macros
+are not semantically tied to verses, but rather to pages. We will create specialized macros for typesetting
+Bible verses to address these problems.
+Solutions This project has been ongoing for the better part of a year, with prototypes spanning the
+past couple years. Goettel has already translated 10% of the BHS. This significant translation will serve as
+a working prototype for testing and researching this project’s new methods. Currently, Goettel’s translation
+and expository notes include nine natural languages.
+In L A TEX, all features — fonts, paper sizes, mathematic symbols and equations, foreign scripts — are
+implemented via macros. Typesetting Goettel’s translation of the BHS already relies on seventeen L A TEX
+packages. However, while extensive efforts to utilize existing L A TEX packages has been spent, the existing
+packages are not sufficient to properly typeset the intention of the BHS authors. New typesetting macros,
+specific for Biblical translation, need to be created.
+Macro languages are a core, theoretical topic of programming languages in computer science. L A TEX is a
+highly-expressive macro language built on top of the TEX primitives. One possible method for solving these
+Biblical typesetting problems is to use Scribble [4], a macro language which expands to produce L A TEX code.
+Scribble is based on the Racket [3] programming language. Professor Tew is a contributor to both the Racket
+and Scribble programming languages. Tew’s PhD advisor, Professor Matthew Flatt (University of Utah), is
+the principal author of Racket and Scribble. One of Goettel’s Hebrew mentors is Professor Stephen D. Ricks
+in BYU’s Department of Asian and Near Eastern Languages who specializes in comparative Semitics. Both
+Drs. Flatt and Ricks are field experts available for consultation on this project.
+Anticipated Academic Outcome
+The expected products of this project are a peer-reviewed academic paper related to Biblical typesetting
+and L A TEX macros for Hebrew to English Biblical translations. L A TEX macros are grouped into packages
+and distributed on the Internet. Internet distribution through the Comprehensive TEX Archive Network
+(CTAN) will allow our project’s results to be used by L A TEX typesetters around the world. This project’s
+CTAN package documentation will lead to further research in a system for easily typesetting documents
+containing multiple languages and be of great use to researchers worldwide.
+Qualifications
+Goettel is a senior majoring in Information Technology with a minor in Biblical Hebrew. It is his personal
+translation of the Hebrew Bible that is being typeset. Goettel has a over a year of intensive experience with
+L A TEX. Additionally, he has a high working proficiency in both Biblical Hebrew and Imperial Aramaic, the
+two languages which appear in the Hebrew Bible. Previously, he has created packages in L A TEX which have
+been used to typeset documents for Professor Tew’s Computer Networks (IT 347) course. He is passionate
+about typography and information architecture, which lends itself greatly to not just typesetting a Bible,
+but making it intuitive and beautiful.
+Professor Tew has years of experience with computer macro languages such as L A TEX Racket, and Scribble.
+Dr. Tew’s PhD training was in the Programming Language sub-discipline of Computer Science with specific
+training in macro programming languages. He has developed strong analytical and problem solving skills
+that can aid in finding simple, yet elegant, solutions. He will serve as an essential resource and mentor in
+this project.
 
 \bibliographystyle{abbrv}
 \bibliography{references}
